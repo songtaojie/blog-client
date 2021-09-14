@@ -4,24 +4,17 @@ import router from './routers'
 import store from './store'
 
 // bootstrap
-import {BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/fonts/iconfont.css'
 import './sass/root.scss'
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 // Vue.component('BIcon', BIcon)
 Vue.config.productionTip = false
 
 import api from './api/http.js'
 Vue.prototype.$api = api
-
-import toast from './components/toast/index'
-Vue.prototype.$toast = toast
-
-import alert from './components/alert/index'
-Vue.prototype.$alert = alert
 
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)

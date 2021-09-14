@@ -1,5 +1,49 @@
 <template>
-  <header class="hx-header fixed-top">
+  <header class="fixed-top hx-header d-flex">
+    <!-- <nav class="mx-auto navbar navbar-expand-md py-0 justify-content-center">
+      <button class="navbar-toggler thin-toggler" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+        <span class="hx-navbar-toggler-icon"></span>
+      </button>
+      <div class="hx-logo hx-3x mx-auto ml-md-0 mr-md-5">
+        <a class="text-white" href="/">海·星の博客</a>
+      </div>
+      <div class="collapse navbar-collapse flex-grow-0" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="nav-item active">
+            <a class="text-white px-3" href="index.html">网站首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-white px-3" href="about.html">关于我</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-white px-3" href="share.html">模板分享</a>
+          </li>
+          <li class="nav-item">
+            <a class="text-white px-3" href="list.html">博客日记</a>
+          </li>
+        </ul>
+      </div>
+    </nav>-->
+    <!-- <div class="hx-brand">
+      <a class="text-white" href="/">海·星の博客</a>
+    </div>-->
+    <el-menu
+      :default-active="activeIndex"
+      active-text-color="#ffd04b"
+      background-color="#545c64"
+      class="d-flex flex-fill justify-content-center"
+      mode="horizontal"
+      router
+      text-color="#fff"
+    >
+      <el-menu-item index="#">海·星の博客</el-menu-item>
+      <el-menu-item index="/">网站首页</el-menu-item>
+      <el-menu-item index="/index">资源分享</el-menu-item>
+      <el-menu-item index="/index">点点滴滴</el-menu-item>
+      <el-menu-item index="/index">关于本站</el-menu-item>
+    </el-menu>
+  </header>
+  <!-- <header class="hx-header fixed-top">
     <b-navbar
       toggleable="md"
       class="mx-auto justify-content-center"
@@ -72,12 +116,10 @@
           ref="dropdown"
         >
           <template slot="button-content">
-            <!-- <em>{{user.username}}</em> -->
             <b-img
               :src="imgUrl"
               rounded="circle"
             ></b-img>
-            <!-- <img src="../assets/images/avatar1_small.jpg" alt=""> -->
           </template>
           <b-dropdown-item :to="editRoute">
             <span class="hx-icon-edit mr-1"></span>写博客
@@ -92,19 +134,15 @@
             <i class="hx-icon-logout-solid mr-1"></i>退出
           </b-dropdown-item>
         </b-nav-dropdown>
-        <!-- <b-nav-item href="#" link-classes="text-white px-3 py-0" active>网站首页</b-nav-item>
-          <b-nav-item href="#" link-classes="text-white px-3 py-0">关于我</b-nav-item>
-          <b-nav-item href="#" link-classes="text-white px-3 py-0">模板分享</b-nav-item>
-        <b-nav-item href="#" link-classes="text-white px-3 py-0">博客日记</b-nav-item>-->
       </b-navbar-nav>
     </b-navbar>
-  </header>
+  </header>-->
 </template>
 <script>
 import { mapState } from 'vuex'
 import imgUrl from '../assets/images/avatar1_small.jpg'
 export default {
-  data () {
+  data() {
     var that = this
 
     return {
@@ -114,6 +152,7 @@ export default {
           useMdEdit: that.$store.getters.user.useMdEdit
         }
       },
+      activeIndex: '/',
       imgUrl,
       colClassShow: false,
       dropClassShow: false,
@@ -122,15 +161,15 @@ export default {
     }
   },
   methods: {
-    doClick () {
+    doClick() {
       if (!this.colClassShow) this.colClassShow = !this.colClassShow
     },
-    onDropShow () {
+    onDropShow() {
       const that = this
       if (that.colVisible) that.colVisible = false
       if (that.screenWidth < 768) that.dropClassShow = true
     },
-    onClick () {
+    onClick() {
       this.$router.push({
         path: '/blog/edit',
         params: {
@@ -140,7 +179,7 @@ export default {
       })
     },
     // 退出
-    onSignOut () {
+    onSignOut() {
       this.$store.commit('CLEAR_AUTH')
     }
   },
@@ -162,7 +201,7 @@ export default {
   //     if ($dropdown.visible) $dropdown.visible = false
   //   }
   // },
-  mounted () {
+  mounted() {
     // const $col = this.$refs.collapse
     const that = this
     // const $col = this.$refs.collapse
@@ -177,8 +216,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .hx-header {
-  line-height: 2.5em;
-  height: 3.5rem;
   z-index: 9999;
   &::before {
     background: #000
@@ -197,6 +234,9 @@ export default {
     top: 0;
     width: 100%;
     z-index: 10;
+  }
+  .hx-brand {
+    background-color: #545c64;
   }
   .navbar-nav {
     .nav-link {

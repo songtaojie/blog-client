@@ -25,37 +25,21 @@
           </div>
         </div>
         <div class="article-content flex-fill">
-          <md-view
-            v-model="detail.content"
-            v-if="detail.isMarkDown"
-          ></md-view>
-          <ck-view
-            v-model="detail.content"
-            v-else
-          ></ck-view>
-          <div class="article-around-wrap d-flex justify-content-between px-4
-            ">
+          <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
+          <ck-view v-else v-model="detail.content"></ck-view>
+          <div class="article-around-wrap d-flex justify-content-between px-4">
             <div v-if="detail.preId!==null">
               <span>上一篇：</span>
-              <b-link
-                target="_blank"
-                :href="'/article/'+ detail.userName+ '/' + detail.preId"
-              >{{detail.preTitle}}</b-link>
+              <b-link :href="'/article/'+ detail.userName+ '/' + detail.preId" target="_blank">{{detail.preTitle}}</b-link>
             </div>
             <div v-if="detail.nextId!==null">
               <span>下一篇：</span>
-              <b-link
-                target="_blank"
-                :href="'/article/'+ detail.userName+ '/' + detail.nextId"
-              >{{detail.nextTitle}}</b-link>
+              <b-link :href="'/article/'+ detail.userName+ '/' + detail.nextId" target="_blank">{{detail.nextTitle}}</b-link>
             </div>
           </div>
         </div>
       </article>
-      <aside
-        class="article-side ml-2 d-none d-md-block"
-        style="width:25%"
-      >
+      <aside class="article-side ml-2 d-none d-md-block" style="width:25%">
         <div class="bg-white about-me px-3 py-2">
           <h2>博主简介</h2>
           <ul>
@@ -63,13 +47,11 @@
               <img src="/skin/show/images/4.jpg" />
             </i>
             <p>
-              <strong>宋涛杰</strong>，一个90后帅气小伙！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
+              <strong>宋</strong>，一个90后帅气小伙！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
             </p>
           </ul>
         </div>
-        <div class="bg-white px-3 py-2">
-
-        </div>
+        <div class="bg-white px-3 py-2"></div>
       </aside>
     </div>
   </div>
@@ -82,7 +64,7 @@ import CkView from './CkView.vue'
 import { dateFormat } from '../../common/'
 export default {
   // name:'view',
-  data () {
+  data() {
     return {
       title: '海·星の博客',
       userName: this.$route.params.userName,
@@ -97,7 +79,7 @@ export default {
   },
   methods: {
     dateFormat,
-    findById () {
+    findById() {
       var that = this
       that.$api.post(`/api/blog/FindById?userName=${that.userName}&id=${that.id}`)
         .then(res => {
