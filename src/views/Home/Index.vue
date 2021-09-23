@@ -1,25 +1,19 @@
 <template>
   <div v-wechat-title="this.title">
     <hx-header></hx-header>
-    <div class="container-fluid hx-container d-flex mt-1">
-      <!-- <div class="flex-fill">
-        <div class="d-flex flex-column pt-1">
-          <div class="flex-fill d-flex flex-column flex-sm-row">
-            <div class="h-100 w-100 hx-carousel">
-            </div>
-          </div>
+    <div class="container-fluid hx-container d-flex pt-3">
+      <div class="flex-fill">
+        <div class="hx-carousel">
+          <hx-carousel :Items="ImgItems"></hx-carousel>
         </div>
-      </div>-->
-      <div class="h-100 w-100 hx-carousel">
-        <hx-carousel :Items="ImgItems"></hx-carousel>
+        <div>
+          <hx-article></hx-article>
+        </div>
       </div>
-    </div>
-    <div class="container-fluid hx-container d-flex mt-1">
-      <div>
-        <hx-article></hx-article>
-      </div>
-      <div class="d-none d-md-block pt-1">
-        <hx-card></hx-card>
+      <div class="pl-3">
+        <div class="hx-card">
+          <hx-card></hx-card>
+        </div>
       </div>
     </div>
   </div>
@@ -37,10 +31,10 @@ export default {
       ImgItems: [
         {
           src: 'https://picsum.photos/1024/480/?image=10'
-        },
-        {
-          src: 'https://picsum.photos/1024/480/?image=12'
         }
+        // {
+        //   src: 'https://picsum.photos/1024/480/?image=12'
+        // }
       ]
     }
   },
@@ -74,6 +68,28 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.hx-carousel {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba($color: #000000, $alpha: 0.03);
+  background: #fefefe;
+  padding: 1rem 1rem;
+  /deep/ img {
+    border-radius: 8px;
+  }
+}
+.hx-card {
+  background: #fff;
+  padding: 0 0 10px 0px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
+  box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
+}
 .carousel-thumbnail {
   a {
     overflow: hidden;
