@@ -19,18 +19,18 @@
         </div>
       </div>
     </div>
-    <div class="d-none d-md-flex align-items-center justify-content-around hx-contact">
+    <div class="d-flex align-items-center justify-content-around hx-contact">
       <a class="about-info" href="/" target="_blank" title="网站地址">
-        <i class="hx-icon-home hx-3x text-info"></i>
+        <i class="hx-icon-home hx-4x text-info"></i>
       </a>
       <a class="about-info" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=977601042@qq.com" target="_blank" title="邮箱">
-        <i class="hx-icon-email hx-3x hx-text-orange"></i>
+        <i class="hx-icon-email hx-4x hx-text-orange"></i>
       </a>
       <a class="about-info" href="#" target="_blank" title="QQ">
-        <i class="hx-icon-qq hx-3x text-info"></i>
+        <i class="hx-icon-qq hx-4x text-info"></i>
       </a>
       <a class="about-info" href="#" target="_blank" title="微信">
-        <i class="hx-icon-weixin hx-3x hx-text-green"></i>
+        <i class="hx-icon-weixin hx-4x hx-text-green"></i>
       </a>
     </div>
   </div>
@@ -76,9 +76,18 @@ export default {
       background: rgba(255, 255, 255, 0.88);
     }
     .name {
+      h3 {
+        font-size: 100%;
+      }
       padding: 0 20px;
       text-align: center;
       margin: 5px 0 10px;
+      a:hover,
+      a:focus {
+        color: #4693e9;
+        text-decoration: none;
+        cursor: pointer;
+      }
       p {
         margin-top: 5px;
         max-height: 40px;
@@ -87,14 +96,13 @@ export default {
         -webkit-line-clamp: 2;
         text-overflow: ellipsis;
         overflow: hidden;
+        line-height: 20px;
       }
     }
   }
 }
 .hx-contact {
   width: 100%;
-  display: flex;
-  align-items: center;
   padding-bottom: 10px;
   border-bottom: 0px solid rgba(150, 150, 150, 0.1);
 }
@@ -108,12 +116,11 @@ span.autlv {
   vertical-align: text-top;
   font-weight: normal;
   border-radius: 2px;
-  line-height: 1.4;
+  line-height: 1.3;
   padding: 0 4px;
-  margin-left: 5px;
   margin-right: 5px;
   letter-spacing: 0px;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 span.aut-1.vs-level {
   background-image: -webkit-linear-gradient(
@@ -121,48 +128,5 @@ span.aut-1.vs-level {
     rgba(253, 165, 34, 0.9294117647058824) 0%,
     #fd4c4c 100%
   );
-}
-.hx-about-me111 {
-  background: #fff;
-  padding: 0 0 10px 0px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
-  box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
-
-  // box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1),
-  //   inset 0px 1px 1px rgba(0, 0, 0, 0.7);
-  // border: 0.25rem solid #fff;
-  .about-header {
-    font-size: 1.375rem;
-    color: #89919a;
-  }
-  // p {
-  //   font-size: 0.75em;
-  //   padding-left: 0.5rem;
-  //   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
-  //   color: #d0d2d4;
-  //   -webkit-animation: animations2 5s ease-in-out 5s;
-  //   -moz-animation: animations2 5s ease-in-out 5s;
-  //   -o-animation: animations2 5s ease-in-out 5s;
-  //   -ms-animation: animations2 5s ease-in-out 5s;
-  //   animation: animations2 5s ease-in-out 5s;
-  // }
-  .about-info {
-    display: block;
-    overflow: hidden;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1),
-      inset 0px 1px 1px rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    padding: 0.5rem 0.6rem;
-
-    &:hover {
-      opacity: 0.65;
-    }
-    i {
-      vertical-align: middle;
-      text-align: center;
-    }
-  }
 }
 </style>
