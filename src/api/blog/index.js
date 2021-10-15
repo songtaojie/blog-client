@@ -14,7 +14,7 @@ export default {
     return request.post(`${routePrefix}/add`, data)
   },
   getDetail(id) {
-    return request.get(`${routePrefix}/get/${id}`)
+    return request.get(`/api/article/${id}`)
   },
   update(data) {
     return request.post(`${routePrefix}/Update`, data)

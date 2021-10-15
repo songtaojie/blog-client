@@ -1,9 +1,9 @@
 <template>
   <div v-wechat-title="this.title">
     <hx-header></hx-header>
-    <div class="hx-container container-lg d-flex">
+    <div class="container-fluid hx-container d-flex pt-3">
       <article class="article-wrap bg-white flex-fill">
-        <div class="article-header px-1">
+        <div class="article-header p-1">
           <h4 class="article-title">{{detail.title}}</h4>
           <div class="article-meta">
             <span>
@@ -62,6 +62,7 @@ import HxHeader from '@/components/HxHeader.vue'
 import MdView from './MdView.vue'
 import CkView from './CkView.vue'
 import { dateFormat } from '../../common/'
+import blogApi from '../../api/blog'
 export default {
   // name:'view',
   data() {
@@ -81,9 +82,10 @@ export default {
     dateFormat,
     findById() {
       var that = this
-      that.$api.post(`/api/blog/FindById?userName=${that.userName}&id=${that.id}`)
+      blogApi.getDetail(that.id)
         .then(res => {
-          if (res && res.success) {
+          debugger
+          if (res && res.succeeded) {
             that.detail = res.data
             this.title = this.detail.title
           }
@@ -114,7 +116,15 @@ export default {
     }
   }
 }
-
+.article-wrap {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(221, 221, 221, 0.28);
+  padding: 0 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
+  box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
+}
 .article-content {
   font-size: 16px;
   color: #4d4d4d;

@@ -7,7 +7,7 @@
       <div class="flex-fill">
         <div class="blog-item-title">
           <h4>
-            <b-link :href="'/article/'+ item.userName+ '/' + item.id" target="_blank">{{item.title}}</b-link>
+            <el-link :href="'/article/'+ item.userName+ '/' + item.id" :underline="false" target="_blank">{{item.title}}</el-link>
           </h4>
         </div>
         <div class="blog-item-summary blog-content-nowrap">
@@ -20,16 +20,19 @@
             </a>
           </div>
           <div class="mr-1">{{isEmpty(item.nickName)?item.userName:item.nickName}}</div>
-          <div class="mr-1">{{dateFormat(item.publishDate)}}</div>
+          <div class="mr-1">
+            <i class="hx-icon-clock hx-2x"></i>
+            {{dateFormat(item.publishDate)}}
+          </div>
           <div class="blog-read ml-auto">
             <a>
-              <span class="hx-text-gray">阅读</span>
+              <span class="hx-text-gray">阅读&nbsp;</span>
               <span class="hx-text-blue">{{item.readCount}}</span>
             </a>
           </div>
           <div class="blog-comment ml-2">
             <a>
-              <span class="hx-text-gray">评论</span>
+              <span class="hx-text-gray">评论&nbsp;</span>
               <span class="hx-text-blue">{{item.cmtCount}}</span>
             </a>
           </div>
@@ -116,6 +119,7 @@ export default {
       a {
         color: #3d3d3d;
         font-weight: 700;
+        font-size: inherit;
         &:hover {
           color: #4183c4;
           text-decoration: none;
