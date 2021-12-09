@@ -1,22 +1,22 @@
 <template>
-  <article class="d-flex mt-2 flex-column justify-content-start hx-blog">
-    <div :key="item.id" class="mb-2 bg-white blog-item d-flex" v-for="item in blogList">
-      <el-link class="hx-cover-img">
+  <article class="d-flex mt-2 flex-column justify-content-start hx-article">
+    <div :key="item.id" class="mb-2 bg-white hx-article-item d-flex" v-for="item in blogList">
+      <a class="hx-article-cover my-auto">
         <el-image :src="item.coverImgUrl" class="hx-fea-img"></el-image>
-      </el-link>
-      <div class="flex-fill">
-        <div class="blog-item-title">
+      </a>
+      <div class="flex-fill hx-article-abstract">
+        <div class="hx-article-title">
           <h4>
-            <el-link :href="'/article/'+ item.userName+ '/' + item.id" :underline="false" target="_blank">{{item.title}}</el-link>
+            <el-link :href="'/article/'+ item.id" :underline="false" target="_blank">{{item.title}}</el-link>
           </h4>
         </div>
-        <div class="blog-item-summary blog-content-nowrap">
+        <div class="hx-article-content">
           <p>{{item.pureContent}}</p>
         </div>
-        <div class="blog-item-user d-flex justify-content-start align-items-center">
+        <div class="hx-article-footer d-flex justify-content-start align-items-center">
           <div class="hx-avatar _32x32 hx-circle mr-2">
             <a>
-              <img :src="item.avatarUrl ? attachApi + item.avatarUrl:avatarUrl" />
+              <img :src="item.avatarUrl" />
             </a>
           </div>
           <div class="mr-1">{{isEmpty(item.nickName)?item.userName:item.nickName}}</div>
@@ -42,8 +42,8 @@
   </article>
 </template>
 <script>
-import { dateFormat, isEmpty } from '../../common/'
-import blogApi from '../../api/blog'
+import { dateFormat, isEmpty } from '../../common'
+import { blogApi } from '../../api'
 export default {
   name: 'HxArticle',
   data() {
@@ -100,13 +100,14 @@ export default {
     }
   }
 }
-.hx-cover-img {
-  width: 210px;
+.hx-article-cover {
+  max-width: 210px;
+  max-height: 150px;
   margin-bottom: 0;
   margin-right: 20px;
 }
-.hx-blog {
-  .blog-item {
+.hx-article {
+  .hx-article-item {
     padding: 1rem 1.5rem;
     background: rgb(255, 255, 255);
     border: 1px solid rgba(221, 221, 221, 0.28);
@@ -114,7 +115,7 @@ export default {
     margin-bottom: 15px;
     -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
     box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
-    .blog-item-title {
+    .hx-article-title {
       width: 100%;
       a {
         color: #3d3d3d;
@@ -126,18 +127,23 @@ export default {
         }
       }
     }
-    .blog-item-summary {
+    .hx-article-content {
       margin-bottom: 0.35rem;
       color: #999;
       font-size: 1em;
-      line-height: 2.1rem;
+      line-height: 2em;
+      p {
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #566573;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+      }
     }
-    .blog-content-nowrap {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .blog-item-user {
+    .hx-article-footer {
       margin: 0.5rem 0 0;
       color: rgba(0, 0, 0, 0.4);
       box-shadow: none;

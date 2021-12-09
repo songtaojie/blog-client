@@ -6,6 +6,8 @@
         <div class="hx-carousel">
           <hx-carousel :Items="ImgItems"></hx-carousel>
         </div>
+        <!-- 通知公告 -->
+        <hx-notice :MsgItems="MsgItems"></hx-notice>
         <div>
           <hx-article></hx-article>
         </div>
@@ -21,8 +23,10 @@
 <script>
 import HxHeader from '@/components/HxHeader.vue'
 import HxCarousel from '@/components/HxCarousel.vue'
+import HxNotice from '@/components/HxNotice.vue'
 import HxCard from './Card'
 import HxArticle from './Article'
+import { homeApi } from '../../api'
 export default {
   data() {
     return {
@@ -32,17 +36,16 @@ export default {
         {
           src: 'https://picsum.photos/1024/480/?image=10'
         }
-        // {
-        //   src: 'https://picsum.photos/1024/480/?image=12'
-        // }
-      ]
+      ],
+      MsgItems: []
     }
   },
   components: {
     HxHeader,
     HxCarousel,
     HxCard,
-    HxArticle
+    HxArticle,
+    HxNotice
   },
   methods: {
     send() {
@@ -56,15 +59,16 @@ export default {
       //     _that.$api.ajaxError(err)
       //   });
     }
+  },
+  created() {
+    var that = this
+    homeApi.getAllData().then(res => {
+      that.MsgItems = res.data.notices.map(r => {
+        return { id: r.id, title: r.content, target: r.target, link: r.link }
+      })
+
+    })
   }
-  // created() {
-  //   this.$api.get('api/values/1')
-  //   .then(r=>{
-  //     debugger
-  //   }).catch(r=>{
-  //     debugger
-  //   })
-  // }
 }
 </script>
 <style lang="scss" scoped>

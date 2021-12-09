@@ -2,7 +2,7 @@
 <template>
   <div>
     <el-carousel :interval="5000" height="350px">
-      <el-carousel-item :key="item" v-for="item in ImgItems">
+      <el-carousel-item :key="index" v-for="(item, index) in ImgItems">
         <img :src="item.src" class="d-block img-fluid w-100 h-100" />
       </el-carousel-item>
     </el-carousel>

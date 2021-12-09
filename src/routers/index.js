@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '../views/Home/Index.vue'
+import Index from '../views/home/Index.vue'
 Vue.use(Router)
 const routes = [
   {
@@ -15,8 +15,8 @@ const routes = [
     redirect: '/'
   }, {
     name: 'view',
-    path: '/article/:userName/:id',
-    component: () => import('../views/Blog/View.vue')
+    path: '/article/:id',
+    component: () => import('../views/blog/View.vue')
   }
 ]
 const router = new Router({

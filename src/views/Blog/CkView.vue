@@ -1,18 +1,12 @@
 <template>
   <div class="hx-view">
-    <mavon-editor
-      v-model="viewValue"
-      :subfield="false"
-      :boxShadow="false"
-      defaultOpen="preview"
-      :toolbarsFlag="false"
-    />
+    <mavon-editor :boxShadow="false" :subfield="false" :toolbarsFlag="false" defaultOpen="preview" v-model="viewValue" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MdView',
+  name: 'CkView',
   props: {
     value: {
       type: String,
@@ -25,7 +19,7 @@ export default {
     }
   },
   watch: {
-    value (val) {
+    value(val) {
       this.viewValue = val
     }
   }
@@ -33,8 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.md-view .markdown-body{
+.md-view .markdown-body {
   border: none;
 }
-
 </style>

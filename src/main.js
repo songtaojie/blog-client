@@ -13,9 +13,6 @@ Vue.use(ElementUI)
 // Vue.component('BIcon', BIcon)
 Vue.config.productionTip = false
 
-import api from './api/http.js'
-Vue.prototype.$api = api
-
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 // md编辑器

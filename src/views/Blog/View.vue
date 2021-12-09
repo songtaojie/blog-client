@@ -20,27 +20,18 @@
             </span>
             <span>
               <i class="hx-icon-comments-o hx-2x"></i>
-              {{detail.readCount}}评论
+              {{detail.cmtCount}}评论
             </span>
           </div>
         </div>
         <div class="article-content flex-fill">
-          <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
-          <ck-view v-else v-model="detail.content"></ck-view>
-          <div class="article-around-wrap d-flex justify-content-between px-4">
-            <div v-if="detail.preId!==null">
-              <span>上一篇：</span>
-              <b-link :href="'/article/'+ detail.userName+ '/' + detail.preId" target="_blank">{{detail.preTitle}}</b-link>
-            </div>
-            <div v-if="detail.nextId!==null">
-              <span>下一篇：</span>
-              <b-link :href="'/article/'+ detail.userName+ '/' + detail.nextId" target="_blank">{{detail.nextTitle}}</b-link>
-            </div>
-          </div>
+          <!-- <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
+          <ck-view v-else v-model="detail.content"></ck-view>-->
+          <div v-html="detail.content"></div>
         </div>
       </article>
       <aside class="article-side ml-2 d-none d-md-block" style="width:25%">
-        <div class="bg-white about-me px-3 py-2">
+        <!-- <div class="bg-white about-me px-3 py-2">
           <h2>博主简介</h2>
           <ul>
             <i>
@@ -50,8 +41,8 @@
               <strong>宋</strong>，一个90后帅气小伙！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
             </p>
           </ul>
-        </div>
-        <div class="bg-white px-3 py-2"></div>
+        </div>-->
+        <!-- <div class="bg-white px-3 py-2"></div> -->
       </aside>
     </div>
   </div>
@@ -59,32 +50,31 @@
 
 <script>
 import HxHeader from '@/components/HxHeader.vue'
-import MdView from './MdView.vue'
-import CkView from './CkView.vue'
-import { dateFormat } from '../../common/'
-import blogApi from '../../api/blog'
+// import MdView from './MdView'
+// import CkView from './CkView'
+import { dateFormat, isEmpty } from '../../common/'
+import { blogApi } from '../../api'
 export default {
-  // name:'view',
+  name: 'view',
   data() {
     return {
       title: '海·星の博客',
-      userName: this.$route.params.userName,
       id: this.$route.params.id,
       detail: {}
     }
   },
   components: {
-    HxHeader,
-    MdView,
-    CkView
+    HxHeader
+    // MdView,
+    // CkView
   },
   methods: {
     dateFormat,
+    isEmpty,
     findById() {
       var that = this
       blogApi.getDetail(that.id)
         .then(res => {
-          debugger
           if (res && res.succeeded) {
             that.detail = res.data
             this.title = this.detail.title
