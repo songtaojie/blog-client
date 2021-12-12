@@ -1,7 +1,7 @@
 <template>
   <article class="d-flex mt-2 flex-column justify-content-start hx-article">
     <div :key="item.id" class="mb-2 bg-white hx-article-item d-flex" v-for="item in blogList">
-      <a class="hx-article-cover my-auto">
+      <a class="hx-article-cover my-auto d-none d-sm-block">
         <el-image :src="item.coverImgUrl" class="hx-fea-img"></el-image>
       </a>
       <div class="flex-fill hx-article-abstract">

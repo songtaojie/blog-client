@@ -1,6 +1,3 @@
-// 类名
-$about-me: name(about-me);
-$carousel: name(carousel);
 //.hx-minw-
 @for $i from 0 through 5 {
   .#{$prefix}-minw-#{$i} {
@@ -34,7 +31,6 @@ $carousel: name(carousel);
     height: #{$w}% !important;
   }
 }
-.hx-about-me,
 .hx-carousel .carousel-item {
   height: 11.875rem;
 }
@@ -72,15 +68,11 @@ $carousel: name(carousel);
     }
   }
 
-  .hx-about-me,
   .hx-carousel .carousel-thumbnail,
   .hx-carousel .carousel-item {
     height: $carousel-md-height;
   }
 
-  .hx-about-me {
-    width: $carousel-md-width;
-  }
   .hx-aside {
     width: $aside-md-width;
   }
@@ -96,14 +88,11 @@ $carousel: name(carousel);
     }
   }
 
-  .hx-about-me,
   .hx-carousel .carousel-thumbnail,
   .hx-carousel .carousel-item {
     height: $carousel-lg-height;
   }
-  .hx-about-me {
-    width: $carousel-lg-width;
-  }
+
   .hx-aside {
     width: $aside-lg-width;
   }
@@ -119,14 +108,11 @@ $carousel: name(carousel);
     }
   }
 
-  .hx-about-me,
   .hx-carousel .carousel-thumbnail,
   .hx-carousel .carousel-item {
     height: $carousel-xl-height;
   }
-  .hx-about-me {
-    width: $carousel-xl-width;
-  }
+
   .hx-aside {
     width: $aside-xl-width;
   }

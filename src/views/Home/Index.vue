@@ -16,7 +16,29 @@
         <div class="hx-card">
           <hx-card></hx-card>
         </div>
-        <hx-tag :TagItems="tagItems"></hx-tag>
+        <!-- 标签 -->
+        <div class="hx-tag" v-if="tagItems.length > 0">
+          <div class="hx-tag__header">
+            <i class="el-icon-collection-tag hx-2x"></i>
+            标签云
+          </div>
+          <div class="hx-tag__body d-flex flex-wrap">
+            <el-tag :key="index" :style="getTagStyle(item)" class="m-1" size="medium" v-for="(item, index) in tagItems">{{ item.name }}</el-tag>
+          </div>
+        </div>
+        <!-- 友情链接 -->
+        <div class="hx-friendlink" v-if="friendlinkItems.length > 0">
+          <div class="hx-friendlink__header">
+            <i class="el-icon-share hx-2x"></i>
+            友情链接
+          </div>
+          <div class="hx-friendlink__body d-flex flex-wrap">
+            <el-link :href="item.link" :key="index" :underline="false" class="mr-3" v-for="(item, index) in friendlinkItems">
+              <!-- <img :src="item.logo" v-if="item.logo" /> -->
+              {{item.siteName}}
+            </el-link>
+          </div>
+        </div>
       </aside>
     </div>
   </div>
@@ -27,7 +49,6 @@ import HxCarousel from '@/components/HxCarousel.vue'
 import HxNotice from '@/components/HxNotice.vue'
 import HxCard from './Card'
 import HxArticle from './Article'
-import HxTag from './Tag'
 import { homeApi } from '../../api'
 export default {
   data() {
@@ -40,7 +61,8 @@ export default {
         }
       ],
       noticeItems: [],
-      tagItems: []
+      tagItems: [],
+      friendlinkItems: []
     }
   },
   components: {
@@ -48,11 +70,15 @@ export default {
     HxCarousel,
     HxCard,
     HxArticle,
-    HxNotice,
-    HxTag
+    HxNotice
   },
   methods: {
-    send() {
+    getTagStyle(item) {
+      return {
+        'background-color': item.bgColor,
+        'border-color': item.bgColor,
+        'color': '#FFFFFF'
+      }
     }
   },
   created() {
@@ -69,6 +95,9 @@ export default {
       }
       if (data.tags && data.tags.length > 0) {
         that.tagItems = data.tags
+      }
+      if (data.friendLinks && data.friendLinks.length > 0) {
+        that.friendlinkItems = data.friendLinks
       }
     })
   }
@@ -124,5 +153,37 @@ export default {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   transition: all 0.5s;
+}
+
+.hx-friendlink,
+.hx-tag {
+  border: 1px solid #ebeef5;
+  background-color: #fff;
+  color: #303133;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+
+  .hx-friendlink__header,
+  .hx-tag__header {
+    padding: 18px 0;
+    border-bottom: 1px solid #009688;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .hx-friendlink__body,
+  .hx-tag__body {
+    padding: 20px 0;
+  }
+  .hx-friendlink__body {
+    img {
+      max-width: 100px;
+      max-height: 40px;
+    }
+  }
 }
 </style>
