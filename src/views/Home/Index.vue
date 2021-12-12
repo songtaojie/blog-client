@@ -4,19 +4,20 @@
     <div class="container-fluid hx-container d-flex pt-3">
       <div class="flex-fill">
         <div class="hx-carousel">
-          <hx-carousel :Items="ImgItems"></hx-carousel>
+          <hx-carousel :Items="imgItems"></hx-carousel>
         </div>
         <!-- 通知公告 -->
-        <hx-notice :MsgItems="MsgItems"></hx-notice>
+        <hx-notice :MsgItems="noticeItems"></hx-notice>
         <div>
           <hx-article></hx-article>
         </div>
       </div>
-      <div class="pl-3">
+      <aside class="pl-3 hx-aside d-none d-md-block">
         <div class="hx-card">
           <hx-card></hx-card>
         </div>
-      </div>
+        <hx-tag :TagItems="tagItems"></hx-tag>
+      </aside>
     </div>
   </div>
 </template>
@@ -26,18 +27,20 @@ import HxCarousel from '@/components/HxCarousel.vue'
 import HxNotice from '@/components/HxNotice.vue'
 import HxCard from './Card'
 import HxArticle from './Article'
+import HxTag from './Tag'
 import { homeApi } from '../../api'
 export default {
   data() {
     return {
       title: '海·星の博客',
       list: 1,
-      ImgItems: [
+      imgItems: [
         {
           src: 'https://picsum.photos/1024/480/?image=10'
         }
       ],
-      MsgItems: []
+      noticeItems: [],
+      tagItems: []
     }
   },
   components: {
@@ -45,28 +48,28 @@ export default {
     HxCarousel,
     HxCard,
     HxArticle,
-    HxNotice
+    HxNotice,
+    HxTag
   },
   methods: {
     send() {
-      // const _that = this
-      // _that.$api
-      //   .get("api/values/1")
-      //   .then(r => {
-      //     debugger;
-      //   })
-      //   .catch(err => {
-      //     _that.$api.ajaxError(err)
-      //   });
     }
   },
   created() {
     var that = this
     homeApi.getAllData().then(res => {
-      that.MsgItems = res.data.notices.map(r => {
+      var data = res.data
+      that.noticeItems = data.notices.map(r => {
         return { id: r.id, title: r.content, target: r.target, link: r.link }
       })
-
+      if (data.banners && data.banners.length > 0) {
+        that.imgItems = data.banners.map(r => {
+          return { id: r.id, src: r.imgUrl, target: r.target, link: r.link, title: r.title }
+        })
+      }
+      if (data.tags && data.tags.length > 0) {
+        that.tagItems = data.tags
+      }
     })
   }
 }

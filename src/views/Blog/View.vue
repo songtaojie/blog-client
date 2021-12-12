@@ -1,11 +1,17 @@
 <template>
   <div v-wechat-title="this.title">
     <hx-header></hx-header>
-    <div class="container-fluid hx-container d-flex pt-3">
-      <article class="article-wrap bg-white flex-fill">
-        <div class="article-header p-1">
-          <h4 class="article-title">{{detail.title}}</h4>
-          <div class="article-meta">
+
+    <div class="container-fluid hx-container pt-3">
+      <el-breadcrumb class="hx-breadcrumb" separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>文章专栏</el-breadcrumb-item>
+        <el-breadcrumb-item>{{detail.title}}</el-breadcrumb-item>
+      </el-breadcrumb>
+      <main class="d-flex">
+        <article class="hx-article-wrap bg-white flex-fill">
+          <h4 class="hx-article-title">{{detail.title}}</h4>
+          <div class="hx-article-meta">
             <span>
               <i class="hx-icon-user"></i>
               {{detail.nickName}}
@@ -15,35 +21,22 @@
               {{dateFormat(detail.publishDate,'yyyy-MM-dd HH:mm')}}
             </span>
             <span>
-              <i class="hx-icon-eye hx-2x"></i>
-              {{detail.readCount}}浏览
+              <i class="el-icon-view hx-2x"></i>
+              {{detail.readCount}}
             </span>
             <span>
-              <i class="hx-icon-comments-o hx-2x"></i>
-              {{detail.cmtCount}}评论
+              <i class="el-icon-chat-dot-round hx-2x"></i>
+              {{detail.cmtCount}}
             </span>
           </div>
-        </div>
-        <div class="article-content flex-fill">
-          <!-- <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
-          <ck-view v-else v-model="detail.content"></ck-view>-->
-          <div v-html="detail.content"></div>
-        </div>
-      </article>
-      <aside class="article-side ml-2 d-none d-md-block" style="width:25%">
-        <!-- <div class="bg-white about-me px-3 py-2">
-          <h2>博主简介</h2>
-          <ul>
-            <i>
-              <img src="/skin/show/images/4.jpg" />
-            </i>
-            <p>
-              <strong>宋</strong>，一个90后帅气小伙！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。
-            </p>
-          </ul>
-        </div>-->
-        <!-- <div class="bg-white px-3 py-2"></div> -->
-      </aside>
+          <div class="hx-article-content flex-fill">
+            <!-- <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
+            <ck-view v-else v-model="detail.content"></ck-view>-->
+            <div v-html="detail.content"></div>
+          </div>
+        </article>
+        <aside class="article-side ml-2 d-none d-md-block" style="width:25%"></aside>
+      </main>
     </div>
   </div>
 </template>
@@ -90,37 +83,40 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.article-header {
+.hx-article-title {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin: 1.2rem 0;
+  color: #242525;
+}
+.hx-article-meta {
+  color: #999;
   border-bottom: 1px solid #eee;
-  .article-title {
-    font-size: 1.5em;
-    font-weight: normal;
-    padding: 1.2rem 0;
-    color: #242525;
+  margin-bottom: 20px;
+  span:not(:first-child) {
+    margin-left: 5px;
   }
-  .article-meta {
-    color: #999;
-    i {
-      vertical-align: middle;
-      padding-bottom: 0.1rem;
-    }
+  i {
+    vertical-align: middle;
+    padding-bottom: 0.1rem;
   }
 }
-.article-wrap {
+.hx-article-wrap {
   background: rgb(255, 255, 255);
   border: 1px solid rgba(221, 221, 221, 0.28);
-  padding: 0 20px;
-  border-radius: 8px;
+  padding: 15px;
+  border-radius: 6px;
   margin-bottom: 15px;
   -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
   box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
 }
-.article-content {
+.hx-article-content {
   font-size: 16px;
   color: #4d4d4d;
-  font-weight: 400;
-  line-height: 26px;
-  margin: 0 0 16px;
+  line-height: 32px;
+  /deep/ p {
+    text-indent: 2em;
+  }
 }
 .article-side {
   .about-me {
@@ -129,6 +125,28 @@ export default {
       font-size: 14px;
       line-height: 34px;
     }
+  }
+}
+
+.hx-breadcrumb {
+  background: #fff;
+  padding: 5px 15px;
+  line-height: normal;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  border-left: 5px solid #009688;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .hx-breadcrumb {
+    padding: 6px 15px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .hx-breadcrumb {
+    padding: 8px 15px;
   }
 }
 </style>

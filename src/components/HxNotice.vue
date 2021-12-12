@@ -25,16 +25,6 @@ export default {
       type: Array,
       required: true
     }
-  },
-  data() {
-    return {
-      // 滚屏消息
-      systemMsg: [
-        { id: 1, title: '入主白宫近10日 拜登做了10件大事' },
-        { id: 2, title: '全民带货？小红书外链淘宝权限将大范围开放' },
-        { id: 3, title: '贾跃亭FF将在纳斯达克上市 股票代码为FFIE' }
-      ]
-    }
   }
 }
 </script>
@@ -46,7 +36,7 @@ export default {
   width: 100%;
   padding: 8px 12px;
   margin-bottom: 10px;
-  border-radius: 2px;
+  border-radius: 8px;
   color: #e6a23c;
   background-color: #fdf6ec;
   overflow: hidden;

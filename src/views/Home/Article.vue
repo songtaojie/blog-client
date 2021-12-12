@@ -14,26 +14,22 @@
           <p>{{item.pureContent}}</p>
         </div>
         <div class="hx-article-footer d-flex justify-content-start align-items-center">
-          <div class="hx-avatar _32x32 hx-circle mr-2">
-            <a>
-              <img :src="item.avatarUrl" />
-            </a>
-          </div>
+          <el-avatar :src="item.avatarUrl" class="mr-2" size="small"></el-avatar>
           <div class="mr-1">{{isEmpty(item.nickName)?item.userName:item.nickName}}</div>
           <div class="mr-1">
             <i class="hx-icon-clock hx-2x"></i>
             {{dateFormat(item.publishDate)}}
           </div>
-          <div class="blog-read ml-auto">
-            <a>
-              <span class="hx-text-gray">阅读&nbsp;</span>
-              <span class="hx-text-blue">{{item.readCount}}</span>
+          <div class="hx-article-read ml-auto">
+            <a href="#">
+              <i class="el-icon-view hx-2x"></i>
+              {{item.readCount}}
             </a>
           </div>
-          <div class="blog-comment ml-2">
-            <a>
-              <span class="hx-text-gray">评论&nbsp;</span>
-              <span class="hx-text-blue">{{item.cmtCount}}</span>
+          <div class="hx-article-comment ml-2">
+            <a href="#">
+              <i class="el-icon-chat-dot-round hx-2x"></i>
+              {{item.cmtCount}}
             </a>
           </div>
         </div>
@@ -148,15 +144,6 @@ export default {
       color: rgba(0, 0, 0, 0.4);
       box-shadow: none;
       transition: color 0.1s ease;
-    }
-    .blog-comment,
-    .blog-read {
-      cursor: pointer;
-      &:hover {
-        span {
-          color: #157dcf;
-        }
-      }
     }
   }
 }

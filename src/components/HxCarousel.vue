@@ -1,9 +1,12 @@
 
 <template>
-  <div>
+  <div v-if="ImgItems.length > 0">
     <el-carousel :interval="5000" height="350px">
       <el-carousel-item :key="index" v-for="(item, index) in ImgItems">
-        <img :src="item.src" class="d-block img-fluid w-100 h-100" />
+        <a :href="item.link" :target="item.target" v-if="item.link">
+          <img :src="item.src" class="d-block img-fluid w-100 h-100" :title="item.title" />
+        </a>
+        <img :src="item.src" class="d-block img-fluid w-100 h-100" v-else />
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -16,12 +19,6 @@ export default {
     Items: {
       type: Array,
       required: true
-    },
-    // 是否有边框
-    Border: {
-      type: Boolean,
-      required: false,
-      default: true
     }
   },
   data() {

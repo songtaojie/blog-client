@@ -33,8 +33,8 @@ $toggler-icon-hover-color: #716aca;
   position: relative;
   min-height: 1px;
   border-radius: 0px;
-  transition: all .4s ease;
-  -webkit-transition: all .4s ease;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
 }
 
 .thick-toggler {
@@ -50,7 +50,7 @@ $toggler-icon-hover-color: #716aca;
       width: 1.875rem;
       height: 0.3rem;
       position: absolute;
-      background: #FFF;
+      background: #fff;
       -webkit-transition-property: margin, -webkit-transform;
       transition-property: margin, -webkit-transform;
       transition-property: margin, transform;
@@ -88,8 +88,8 @@ $toggler-icon-hover-color: #716aca;
       height: 2px;
       min-height: 1px;
       border-radius: 0px;
-      transition: all .4s ease;
-      -webkit-transition: all .4s ease;
+      transition: all 0.4s ease;
+      -webkit-transition: all 0.4s ease;
       background-color: $toggler-icon-color;
     }
 
@@ -109,7 +109,6 @@ $toggler-icon-hover-color: #716aca;
 .hx-nav-collapse {
   .thin-toggler {
     #{$icon} {
-
       &::before,
       &::after {
         left: 0;
@@ -141,83 +140,3 @@ $toggler-icon-hover-color: #716aca;
     }
   }
 }
-
-// //bootstrap面包屑导航
-// .breadcrumb {
-//   border-radius: unset;
-// }
-
-// .breadcrumb-item+.breadcrumb-item::before {
-//   content: ">";
-// }
-
-// .breadcrumb-item {
-//   color: #8c8ea4;
-
-//   .active {
-//     color: #716aca;
-//   }
-// }
-
-// //侧边
-// $aside: get-name(aside);
-// $aside-fixed: get-name(aside-fixed);
-// $aside-menu: get-name(aside-menu);
-// $aside-brand: get-name(aside-brand);
-
-// #{$aside-brand} {
-//   padding-left: 1rem;
-//   padding-right: 1rem;
-//   height: $header-hight;
-// }
-
-// #{get-name(nav-text)} {
-//   font-weight: 400;
-//   font-size: 0.825em;
-//   text-transform: initial;
-// }
-
-// #{$aside},
-// #{$aside-fixed},
-// #{$aside-menu} {
-//   transition: all .5s ease;
-//   -webkit-transition: all .5s ease;
-// }
-
-// #{$aside-menu} {
-//   width: $width-100;
-// }
-
-// #{$aside},
-// #{$aside-fixed} {
-//   width: 13.75rem;
-//   top: 0;
-//   z-index: 1030;
-//   height: $height-100;
-// }
-
-// #{$aside-fixed} {
-//   position: fixed;
-// }
-
-// .nav-item {
-//   &.active {
-//     .nav-link {
-//       color: #716aca;
-//     }
-//   }
-
-//   &:not(.active):hover {
-//     transition: background-color 0.3s;
-//     -webkit-transition: background-color 0.3s;
-//     background-color: $dark;
-
-//     .nav-link {
-//       color: #716aca;
-//     }
-//   }
-// }
-
-// .nav-link {
-//   color: #8c8ea4;
-// }
