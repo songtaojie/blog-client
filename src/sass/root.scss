@@ -34,22 +34,18 @@ a {
   }
 }
 
-.#{$prefix}-fa-some {
-  width: $font-size;
-  text-align: center;
+a:focus,
+button:focus {
+  outline: 1px dotted;
+  outline: none;
 }
 
-.#{$prefix}-container {
-  margin: 0 auto;
-  margin-top: $header-height + 0.25rem !important;
-  max-width: $max-width;
+// bootstrap
+.d-flex:not(.flex-column) > .flex-fill {
+  width: 0;
 }
 
-@import 'function';
-@import 'site';
+@import 'layout';
 @import 'size';
 @import 'text';
-@import 'bootstrap';
-@import 'color';
 @import 'hxeditor';
-@import 'hxnavbar';

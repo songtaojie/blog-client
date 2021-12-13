@@ -1,0 +1,37 @@
+// header
+.hx-header {
+  z-index: 9999;
+  background-color: $header-color;
+  &::before {
+    background: #000
+      linear-gradient(
+        to left,
+        #4cd964,
+        #5ac8fa,
+        #007aff,
+        #34aadc,
+        #5856d6,
+        #ff2d55
+      );
+    content: '';
+    height: 5px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  .hx-logo {
+    margin-top: 6px;
+  }
+  .hx-header__inner {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+}
+
+// body
+.hx-container {
+  margin: 0 auto;
+  margin-top: $header-height + 0.25rem !important;
+  max-width: $max-width;
+}

@@ -1,13 +1,9 @@
 @for $i from 1 through 5 {
-  $index:$i - 1;
+  $index: $i - 1;
   .#{$prefix}-#{$i}x {
-      font-size: $font-size + 0.25em * $index;
+    font-size: $font-size + 0.25em * $index;
   }
 }
-.text-mid{
-  vertical-align: middle;
-}
-
 //.hx-text-green
 .#{$prefix}-text-green {
   color: $green;

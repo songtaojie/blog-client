@@ -22,7 +22,7 @@
     max-height: (5em * $i);
   }
 }
-
+// 宽度高度
 @each $w in 0, 25, 30, 50, 70, 75, 100 {
   .w-#{$w} {
     width: #{$w}% !important;
@@ -31,10 +31,40 @@
     height: #{$w}% !important;
   }
 }
-.hx-carousel .carousel-item {
+//头像
+.#{$prefix}-circle {
+  border-radius: 50% !important;
+  -o-object-fit: cover;
+  object-fit: cover;
+  overflow: hidden;
+}
+.#{$prefix}-avatar {
+  position: relative;
+  display: inline-block;
+  &._160x160 img,
+  &._80x80 img,
+  &._50x50 img,
+  &._32x32 img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+  a {
+    display: block;
+  }
+}
+//固定宽高，一般用于头像
+@each $i in 32, 50, 80, 160 {
+  &._#{$i}x#{$i} {
+    width: ($i / 16) + rem;
+    height: ($i / 16) + rem;
+  }
+}
+
+.#{$prefix}-carousel .carousel-item {
   height: 11.875rem;
 }
-.hx-carousel .carousel-thumbnail {
+.#{$prefix}-carousel .carousel-thumbnail {
   height: 5.875rem;
 }
 
@@ -48,11 +78,11 @@
       height: #{$w}% !important;
     }
   }
-  .hx-carousel .carousel-thumbnail,
-  .hx-carousel .carousel-item {
+  .#{$prefix}-carousel .carousel-thumbnail,
+  .#{$prefix}-carousel .carousel-item {
     height: $carousel-sm-height;
   }
-  .hx-aside {
+  .#{$prefix}-aside {
     width: $aside-sm-width;
   }
 }
@@ -68,12 +98,12 @@
     }
   }
 
-  .hx-carousel .carousel-thumbnail,
+  .#{$prefix}-carousel .carousel-thumbnail,
   .hx-carousel .carousel-item {
     height: $carousel-md-height;
   }
 
-  .hx-aside {
+  .#{$prefix}-aside {
     width: $aside-md-width;
   }
 }
@@ -88,12 +118,12 @@
     }
   }
 
-  .hx-carousel .carousel-thumbnail,
-  .hx-carousel .carousel-item {
+  .#{$prefix}-carousel .carousel-thumbnail,
+  .#{$prefix}-carousel .carousel-item {
     height: $carousel-lg-height;
   }
 
-  .hx-aside {
+  .#{$prefix}-aside {
     width: $aside-lg-width;
   }
 }
@@ -108,12 +138,12 @@
     }
   }
 
-  .hx-carousel .carousel-thumbnail,
-  .hx-carousel .carousel-item {
+  .#{$prefix}-carousel .carousel-thumbnail,
+  .#{$prefix}-carousel .carousel-item {
     height: $carousel-xl-height;
   }
 
-  .hx-aside {
+  .#{$prefix}-aside {
     width: $aside-xl-width;
   }
 }
