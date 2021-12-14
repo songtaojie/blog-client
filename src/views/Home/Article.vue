@@ -25,7 +25,7 @@
           <div class="mr-1">{{item.publisher}}</div>
           <div class="mr-1">
             <i class="hx-icon-clock hx-2x"></i>
-            {{dateFormat(item.publishDate)}}
+            {{item.publishDate_V}}
           </div>
           <div class="mx-1">
             <span :key="tag.id" :style="getTagStyle(tag)" class="tag mr-1" v-for="tag in item.tags">{{tag.name}}</span>
@@ -48,7 +48,7 @@
   </article>
 </template>
 <script>
-import { dateFormat, isEmpty } from '../../common'
+import { isEmpty } from '../../common'
 import { blogApi } from '../../api'
 export default {
   name: 'HxArticle',
@@ -70,7 +70,6 @@ export default {
   },
   methods: {
     isEmpty,
-    dateFormat,
     getArticles: function () {
       var that = this
       blogApi.getArticles(that.queryParam)

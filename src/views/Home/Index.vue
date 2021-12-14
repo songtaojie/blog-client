@@ -33,7 +33,7 @@
             友情链接
           </div>
           <div class="hx-friendlink__body d-flex flex-wrap">
-            <el-link :href="item.link" :key="index" :underline="false" class="mr-3" v-for="(item, index) in friendlinkItems">
+            <el-link :href="item.link" :key="index" :underline="false" class="mr-3" target="_blank" v-for="(item, index) in friendlinkItems">
               <!-- <img :src="item.logo" v-if="item.logo" /> -->
               {{item.siteName}}
             </el-link>
