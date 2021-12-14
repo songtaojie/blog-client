@@ -30,9 +30,8 @@
             </span>
           </div>
           <div class="hx-article-content flex-fill">
-            <!-- <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
-            <ck-view v-else v-model="detail.content"></ck-view>-->
-            <div v-html="detail.content"></div>
+            <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
+            <div v-else v-html="detail.content"></div>
           </div>
         </article>
         <aside class="article-side ml-2 d-none d-md-block" style="width:25%"></aside>
@@ -43,8 +42,7 @@
 
 <script>
 import HxHeader from '@/components/HxHeader.vue'
-// import MdView from './MdView'
-// import CkView from './CkView'
+import MdView from './MdView'
 import { dateFormat, isEmpty } from '../../common/'
 import { blogApi } from '../../api'
 export default {
@@ -57,9 +55,8 @@ export default {
     }
   },
   components: {
-    HxHeader
-    // MdView,
-    // CkView
+    HxHeader,
+    MdView
   },
   methods: {
     dateFormat,

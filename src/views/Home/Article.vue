@@ -5,7 +5,14 @@
         <el-image :src="item.coverImgUrl" class="hx-fea-img"></el-image>
       </a>
       <div class="flex-fill hx-article-abstract">
-        <div class="hx-article-title">
+        <div class="hx-article-title d-flex">
+          <el-tag class="m-1" effect="dark" size="small" v-if="item.isTop">置顶</el-tag>
+          <el-tag
+            :type="item.blogType === 1?'warning':item.blogType === 2?'info':'danger'"
+            class="m-1"
+            effect="dark"
+            size="small"
+          >{{item.blogType === 1?"转载":item.blogType === 2?"翻译":"原创"}}</el-tag>
           <h4>
             <el-link :href="'/article/'+ item.id" :underline="false" target="_blank">{{item.title}}</el-link>
           </h4>
@@ -15,10 +22,13 @@
         </div>
         <div class="hx-article-footer d-flex justify-content-start align-items-center">
           <el-avatar :src="item.avatarUrl" class="mr-2" size="small"></el-avatar>
-          <div class="mr-1">{{isEmpty(item.nickName)?item.userName:item.nickName}}</div>
+          <div class="mr-1">{{item.publisher}}</div>
           <div class="mr-1">
             <i class="hx-icon-clock hx-2x"></i>
             {{dateFormat(item.publishDate)}}
+          </div>
+          <div class="mx-1">
+            <span :key="tag.id" :style="getTagStyle(tag)" class="tag mr-1" v-for="tag in item.tags">{{tag.name}}</span>
           </div>
           <div class="hx-article-read ml-auto">
             <a href="#">
@@ -67,6 +77,13 @@ export default {
         .then(res => {
           that.blogList = res.data.items
         })
+    },
+    getTagStyle(tag) {
+      return {
+        'background-color': tag.bgColor,
+        'border-color': tag.bgColor,
+        'color': '#FFFFFF'
+      }
     }
   }
 }
@@ -144,6 +161,12 @@ export default {
       color: rgba(0, 0, 0, 0.4);
       box-shadow: none;
       transition: color 0.1s ease;
+      .tag {
+        display: inline-block;
+        padding: 0px 9px;
+        border-radius: 10px;
+        background: bisque;
+      }
     }
   }
 }

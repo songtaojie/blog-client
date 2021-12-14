@@ -1,8 +1,13 @@
-.#{$prefix}-editor {
-  .ck-content,
-  .v-note-panel {
-    min-height: calc(100vh - 23.5rem);
-    max-height: 100vh;
+.#{$prefix}-editor-show {
+  .markdown-body {
+    border: none;
+    ol,
+    ul {
+      padding-left: 0;
+    }
+  }
+  pre {
+    max-height: 400px;
   }
   .v-note-wrapper {
     z-index: 999;
@@ -18,14 +23,10 @@
         border-bottom: 1px solid #ddd !important;
       }
     }
-  }
-}
-
-.#{$prefix}-view {
-  .markdown-body {
-    border: none;
-  }
-  pre {
-    max-height: 400px;
+    .v-note-show {
+      .v-show-content {
+        background-color: #fff !important;
+      }
+    }
   }
 }
