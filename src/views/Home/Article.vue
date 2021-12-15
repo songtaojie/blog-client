@@ -1,6 +1,6 @@
 <template>
   <article class="d-flex mt-2 flex-column justify-content-start hx-article">
-    <div :key="item.id" class="mb-2 bg-white hx-article-item d-flex" v-for="item in blogList">
+    <div :key="item.id" class="mb-2 hx-article-item d-flex hx-bg-color" v-for="item in blogList">
       <a class="hx-article-cover my-auto d-none d-sm-block">
         <el-image :src="item.coverImgUrl" class="hx-fea-img"></el-image>
       </a>
@@ -121,7 +121,6 @@ export default {
 .hx-article {
   .hx-article-item {
     padding: 1rem 1.5rem;
-    background: rgb(255, 255, 255);
     border: 1px solid rgba(221, 221, 221, 0.28);
     border-radius: 8px;
     margin-bottom: 15px;

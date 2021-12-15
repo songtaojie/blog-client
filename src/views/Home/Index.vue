@@ -3,7 +3,7 @@
     <hx-header></hx-header>
     <div class="container-fluid hx-container d-flex pt-3">
       <div class="flex-fill">
-        <div class="hx-carousel">
+        <div class="hx-carousel mb-2 p-2 hx-bg-color">
           <hx-carousel :Items="imgItems"></hx-carousel>
         </div>
         <!-- 通知公告 -->
@@ -13,11 +13,28 @@
         </div>
       </div>
       <aside class="pl-3 hx-aside d-none d-md-block">
-        <div class="hx-card">
+        <div class="hx-card hx-bg-color">
           <hx-card></hx-card>
         </div>
+        <!-- 热点文章 -->
+        <div class="hx-hot hx-bg-color" v-if="hotItems.length > 0">
+          <div class="hx-hot__header">
+            <i class="el-icon-rank hx-2x"></i>
+            热点文章
+          </div>
+          <div class="hx-hot__body d-flex flex-wrap">
+            <a :href="'/article/'+ item.id" :key="index" class="w-100" target="_blank" v-for="(item, index) in hotItems">
+              <el-card :body-style="{ padding: '0px'}" class="mb-3 hx-bg-color" shadow="hover">
+                <img :src="item.coverImgUrl" style="width:100%;display:block;" />
+                <div style="padding: 14px;">
+                  <span>{{item.title}}</span>
+                </div>
+              </el-card>
+            </a>
+          </div>
+        </div>
         <!-- 标签 -->
-        <div class="hx-tag" v-if="tagItems.length > 0">
+        <div class="hx-tag hx-bg-color" v-if="tagItems.length > 0">
           <div class="hx-tag__header">
             <i class="el-icon-collection-tag hx-2x"></i>
             标签云
@@ -27,7 +44,7 @@
           </div>
         </div>
         <!-- 友情链接 -->
-        <div class="hx-friendlink" v-if="friendlinkItems.length > 0">
+        <div class="hx-friendlink hx-bg-color" v-if="friendlinkItems.length > 0">
           <div class="hx-friendlink__header">
             <i class="el-icon-share hx-2x"></i>
             友情链接
@@ -62,7 +79,8 @@ export default {
       ],
       noticeItems: [],
       tagItems: [],
-      friendlinkItems: []
+      friendlinkItems: [],
+      hotItems: []
     }
   },
   components: {
@@ -93,12 +111,9 @@ export default {
           return { id: r.id, src: r.imgUrl, target: r.target, link: r.link, title: r.title }
         })
       }
-      if (data.tags && data.tags.length > 0) {
-        that.tagItems = data.tags
-      }
-      if (data.friendLinks && data.friendLinks.length > 0) {
-        that.friendlinkItems = data.friendLinks
-      }
+      that.tagItems = data.tags || []
+      that.friendlinkItems = data.friendLinks || []
+      that.hotItems = data.hots || []
     })
   }
 }
@@ -108,57 +123,25 @@ export default {
   overflow: hidden;
   position: relative;
   width: 100%;
-  margin-bottom: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba($color: #000000, $alpha: 0.03);
-  background: #fefefe;
-  padding: 1rem 1rem;
   /deep/ img {
     border-radius: 8px;
   }
 }
 .hx-card {
-  background: #fff;
   padding: 0 0 10px 0px;
   border-radius: 8px;
   margin-bottom: 15px;
   -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
   box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
 }
-.carousel-thumbnail {
-  a {
-    overflow: hidden;
-    height: 100%;
-
-    img {
-      opacity: 0.75;
-    }
-
-    &:hover {
-      img {
-        transform: scale(1.1);
-        opacity: 1;
-      }
-    }
-  }
-}
-.carousel-thumbnail a img,
-.carousel-item img {
-  height: 100%;
-  width: 100%;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  transition: all 0.5s;
-}
 
 .hx-friendlink,
-.hx-tag {
+.hx-tag,
+.hx-hot {
   border: 1px solid #ebeef5;
-  background-color: #fff;
   color: #303133;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -168,7 +151,8 @@ export default {
   margin-bottom: 15px;
 
   .hx-friendlink__header,
-  .hx-tag__header {
+  .hx-tag__header,
+  .hx-hot__header {
     padding: 18px 0;
     border-bottom: 1px solid #009688;
     -webkit-box-sizing: border-box;
@@ -176,7 +160,9 @@ export default {
   }
 
   .hx-friendlink__body,
-  .hx-tag__body {
+  .hx-tag__body,
+  .hx-hot__body {
+    width: 100%;
     padding: 20px 0;
   }
   .hx-friendlink__body {

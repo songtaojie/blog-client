@@ -3,13 +3,13 @@
     <hx-header></hx-header>
 
     <div class="container-fluid hx-container pt-3">
-      <el-breadcrumb class="hx-breadcrumb" separator-class="el-icon-arrow-right">
+      <el-breadcrumb class="hx-breadcrumb hx-bg-color" separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>文章专栏</el-breadcrumb-item>
         <el-breadcrumb-item>{{detail.title}}</el-breadcrumb-item>
       </el-breadcrumb>
       <main class="d-flex">
-        <article class="hx-article-wrap bg-white flex-fill">
+        <article class="hx-article-wrap hx-bg-color flex-fill">
           <h4 class="hx-article-title">{{detail.title}}</h4>
           <div class="hx-article-meta">
             <span>

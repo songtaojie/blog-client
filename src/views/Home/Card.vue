@@ -1,13 +1,8 @@
 <template>
   <div>
-    <div :style="{backgroundImage:`url(${img})`}" class="hx-about-me">
-      <!-- <h2 class="mx-2 my-3 about-header">关于我</h2> -->
-      <!-- <p>网名：演绎~陌路离殇</p>
-      <p>职业：Web前端设计师、后端开发</p>
-      <p>现居：河南省-郑州市</p>
-      <p>Email：stjworkemail@163.com</p>-->
-      <div class="user-bgif">
-        <img alt="海·星の博客" height="80" src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=oiaf7kiagGGgictQZwuk7KZxw&amp;s=640&amp;t=1555320187" width="80" />
+    <div :style="{backgroundImage:`url(${img})`}" class="hx-aboutme hx-bg-color">
+      <div class="hx-aboutme-avatar">
+        <img alt="海·星の博客" src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=oiaf7kiagGGgictQZwuk7KZxw&amp;s=640&amp;t=1555320187" />
         <div class="name">
           <h3>
             <a href="//wpa.qq.com/msgrd?v=3&amp;uin=229693666&amp;site=qq&amp;menu=yes" rel="nofollow" title="QQ联系我">
@@ -40,13 +35,13 @@ export default {
   name: 'card',
   data() {
     return {
-      img: require('/src/assets/images/aside-author-bg.jpg')
+      img: require('/src/assets/images/aside-author-bg-trans.png')
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.hx-about-me {
+.hx-aboutme {
   position: relative;
   z-index: 1;
   height: 125px;
@@ -61,9 +56,9 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, transparent, #fff);
+    // background: linear-gradient(to bottom, transparent, transparent, #fff);
   }
-  .user-bgif {
+  .hx-aboutme-avatar {
     position: relative;
     padding-top: 50px;
     img {
@@ -73,7 +68,6 @@ export default {
       height: 80px;
       border-radius: 99px;
       padding: 5px;
-      background: rgba(255, 255, 255, 0.88);
     }
     .name {
       h3 {
