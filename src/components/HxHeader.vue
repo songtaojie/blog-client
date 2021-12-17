@@ -17,7 +17,7 @@
       >
         <el-menu-item index="/">网站首页</el-menu-item>
         <el-menu-item index="/index">资源分享</el-menu-item>
-        <el-menu-item index="/index">点点滴滴</el-menu-item>
+        <el-menu-item index="/timeline">点点滴滴</el-menu-item>
         <el-menu-item index="/index">关于本站</el-menu-item>
       </el-menu>
     </div>

@@ -51,7 +51,9 @@ export default {
     return {
       title: '海·星の博客',
       id: this.$route.params.id,
-      detail: {}
+      detail: {
+        isMarkDown: false
+      }
     }
   },
   components: {

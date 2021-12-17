@@ -19,9 +19,16 @@ export const blogApi = {
     return request.get(`/api/article/${id}`)
   }
 }
-
+// 首页api前缀
+export const timeLineApi = {
+  // 分页列表
+  getTimeLines(page) {
+    return request.get(`/api/timelines/${page}`)
+  }
+}
 
 export default {
   blogApi,
-  homeApi
+  homeApi,
+  timeLineApi
 }
