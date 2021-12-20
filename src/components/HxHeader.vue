@@ -25,9 +25,15 @@
 </template>
 <script>
 export default {
+  name: 'HxHeader',
+  props: {
+    activeIndex: {
+      type: String,
+      default: '/'
+    }
+  },
   data() {
     var that = this
-
     return {
       editRoute: {
         name: 'edit',
@@ -36,10 +42,6 @@ export default {
         }
       },
       logo: require('@/assets/images/logo.png'),
-      activeIndex: '/',
-      colClassShow: false,
-      dropClassShow: false,
-      colVisible: false,
       screenWidth: document.body.clientWidth // 屏幕宽度
     }
   },

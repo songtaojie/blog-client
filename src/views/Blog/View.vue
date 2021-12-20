@@ -101,7 +101,6 @@ export default {
   }
 }
 .hx-article-wrap {
-  background: rgb(255, 255, 255);
   border: 1px solid rgba(221, 221, 221, 0.28);
   padding: 15px;
   border-radius: 6px;
@@ -124,28 +123,6 @@ export default {
       font-size: 14px;
       line-height: 34px;
     }
-  }
-}
-
-.hx-breadcrumb {
-  background: #fff;
-  padding: 5px 15px;
-  line-height: normal;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  border-left: 5px solid #009688;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 768px) {
-  .hx-breadcrumb {
-    padding: 6px 15px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .hx-breadcrumb {
-    padding: 8px 15px;
   }
 }
 </style>
