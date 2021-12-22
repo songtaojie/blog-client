@@ -30,8 +30,8 @@
             </span>
           </div>
           <div class="hx-article-content flex-fill">
-            <md-view v-if="detail.isMarkDown" v-model="detail.content"></md-view>
-            <div v-else v-html="detail.content"></div>
+            <md-view class="content__inner" v-if="detail.isMarkDown" v-model="detail.content"></md-view>
+            <div class="content__inner" v-else v-html="detail.content"></div>
           </div>
         </article>
         <aside class="article-side ml-2 d-none d-md-block" style="width:25%"></aside>
@@ -112,10 +112,15 @@ export default {
   font-size: 16px;
   color: #4d4d4d;
   line-height: 32px;
-  /deep/ p {
+  ::v-deep p {
     text-indent: 2em;
+    word-break: break-all;
+  }
+  ::v-deep img {
+    max-width: 100%;
   }
 }
+
 .article-side {
   .about-me {
     h2 {

@@ -45,11 +45,16 @@
         </div>
       </div>
     </div>
+    <infinite-loading @infinite="infiniteHandler">
+      <span slot="no-more">没有更多了</span>
+      <span slot="no-results">小主还没发布任何文章</span>
+    </infinite-loading>
   </article>
 </template>
 <script>
 import { isEmpty } from '../../common'
 import { blogApi } from '../../api'
+import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'HxArticle',
   data() {
@@ -57,24 +62,23 @@ export default {
       attachApi: process.env.VUE_APP_ATTACH_API,
       avatarUrl: require('../../assets/images/avatar1_small.jpg'),
       blogList: [],
-      queryParam: {
-        PageIndex: 0,
-        PageSize: 2,
-        SortKey: '',
-        SortType: 0
-      }
+      page: 1
     }
   },
+  components: {
+    InfiniteLoading
+  },
   created() {
-    this.getArticles()
+    // this.getArticles()
   },
   methods: {
     isEmpty,
     getArticles: function () {
       var that = this
-      blogApi.getArticles(that.queryParam)
+      blogApi.getArticles(that.page)
         .then(res => {
-          that.blogList = res.data.items
+          that.page += 1
+          that.blogList = that.blogList.concat(res.data.items)
         })
     },
     getTagStyle(tag) {
@@ -83,6 +87,19 @@ export default {
         'border-color': tag.bgColor,
         'color': '#FFFFFF'
       }
+    },
+    infiniteHandler($state) {
+      var that = this
+      blogApi.getArticles(that.page)
+        .then(res => {
+          if (res.data.items.length > 0) {
+            that.page += 1
+            that.blogList = that.blogList.concat(res.data.items)
+            $state.loaded()
+          } else {
+            $state.complete()
+          }
+        })
     }
   }
 }

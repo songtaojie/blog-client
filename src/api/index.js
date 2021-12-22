@@ -12,8 +12,8 @@ export const homeApi = {
 // const routePrefix = '/api/blog'
 export const blogApi = {
   // 分页列表
-  getArticles(data) {
-    return request.post('/api/articles', data)
+  getArticles(page) {
+    return request.get(`/api/articles/${page}`)
   },
   getDetail(id) {
     return request.get(`/api/article/${id}`)
