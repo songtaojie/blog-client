@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../views/home/Index.vue'
 Vue.use(Router)
-const routes = [
+const constRouterMap = [
   {
     path: '/',
     name: 'home',
@@ -27,7 +27,7 @@ const routes = [
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  constRouterMap
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
@@ -35,4 +35,6 @@ router.beforeEach((to, from, next) => {
   }
   next()
 })
-export default router
+export function createRouter() {
+  return router
+}

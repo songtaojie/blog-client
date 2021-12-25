@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './routers'
-import store from './store'
+import { createRouter } from './routers'
+import { createStore } from './store'
+import { sync } from 'vuex-router-sync'
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,11 +21,25 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 // use
 Vue.use(mavonEditor)
-// // 帮助类
-// import utils from './common'
-// window.utils = utils
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+
+// createApp工厂方法
+export function createApp(ssrContext) {
+  // 创建 router 实例
+  const router = createRouter()
+  const store = createStore() // 创建全新store实例
+
+  // 同步路由状态到store中
+  sync(store, router)
+
+  // 创建Vue应用
+  const app = new Vue({
+    router,
+    store,
+    ssrContext,
+    render: h => h(App)
+  })
+  return { app, router, store }
+}
+
+
+
