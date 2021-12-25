@@ -1,11 +1,8 @@
 <template>
   <div v-wechat-title="this.title">
-    <hx-header></hx-header>
+    <hx-header activeIndex="/articles"></hx-header>
     <div class="container-fluid hx-container d-flex pt-3">
       <div class="flex-fill">
-        <div class="hx-carousel mb-2 p-2 hx-bg-color">
-          <hx-carousel :Items="imgItems"></hx-carousel>
-        </div>
         <!-- 通知公告 -->
         <hx-notice :MsgItems="noticeItems"></hx-notice>
         <div>
@@ -13,9 +10,6 @@
         </div>
       </div>
       <aside class="pl-3 hx-aside d-none d-md-block">
-        <div class="hx-card hx-bg-color">
-          <hx-card></hx-card>
-        </div>
         <!-- 热点文章 -->
         <div class="hx-hot hx-bg-color" v-if="hotItems.length > 0">
           <div class="hx-hot__header">
@@ -35,67 +29,28 @@
         </div>
         <!-- 标签 -->
         <hx-tag :TagItems="tagItems"></hx-tag>
-        <!-- <div class="hx-tag hx-bg-color" v-if="tagItems.length > 0">
-          <div class="hx-tag__header">
-            <i class="el-icon-collection-tag hx-2x"></i>
-            标签云
-          </div>
-          <div class="hx-tag__body d-flex flex-wrap">
-            <el-tag
-              :key="index"
-              :style="getTagStyle(item)"
-              @click="tagClick(item)"
-              class="m-1"
-              size="medium"
-              v-for="(item, index) in tagItems"
-            >{{ item.name }}</el-tag>
-          </div>
-        </div>-->
-        <!-- 友情链接 -->
-        <div class="hx-friendlink hx-bg-color" v-if="friendlinkItems.length > 0">
-          <div class="hx-friendlink__header">
-            <i class="el-icon-share hx-2x"></i>
-            友情链接
-          </div>
-          <div class="hx-friendlink__body d-flex flex-wrap">
-            <el-link :href="item.link" :key="index" :underline="false" class="mr-3" target="_blank" v-for="(item, index) in friendlinkItems">
-              <!-- <img :src="item.logo" v-if="item.logo" /> -->
-              {{item.siteName}}
-            </el-link>
-          </div>
-        </div>
       </aside>
     </div>
   </div>
 </template>
 <script>
 import HxHeader from '@/components/HxHeader.vue'
-import HxCarousel from '@/components/HxCarousel.vue'
 import HxNotice from '@/components/HxNotice.vue'
-import HxCard from './Card'
-import HxTag from './Tag.vue'
-import HxArticle from './Article'
+import HxArticle from '../home/Article.vue'
+import HxTag from '../home/Tag.vue'
 import { homeApi } from '../../api'
 export default {
   data() {
     return {
       title: '海·星の博客',
       list: 1,
-      imgItems: [
-        {
-          src: 'https://picsum.photos/1024/480/?image=10'
-        }
-      ],
       noticeItems: [],
       tagItems: [],
-      friendlinkItems: [],
       hotItems: []
     }
   },
   components: {
     HxHeader,
-    HxCarousel,
-    HxCard,
     HxArticle,
     HxNotice,
     HxTag
@@ -107,15 +62,6 @@ export default {
         'border-color': item.bgColor,
         'color': '#FFFFFF'
       }
-    },
-    tagClick(tag) {
-      debugger
-      this.$router.push({
-        path: '/articles',
-        query: {
-          t: tag.id
-        }
-      })
     }
   },
   created() {
@@ -131,7 +77,6 @@ export default {
         })
       }
       that.tagItems = data.tags || []
-      that.friendlinkItems = data.friendLinks || []
       that.hotItems = data.hots || []
     })
   }

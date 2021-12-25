@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../views/home/Index.vue'
+import Articles from '../views/article/index.vue'
 Vue.use(Router)
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
   }, {
     path: '*',
     redirect: '/'
+  },
+  {
+    name: 'articles',
+    path: '/articles',
+    component: Articles
   }, {
     name: 'view',
     path: '/article/:id',
@@ -22,6 +28,11 @@ const routes = [
     name: 'timeline',
     path: '/timeline',
     component: () => import('../views/timeline/index.vue')
+  },
+  {
+    name: 'about',
+    path: '/about',
+    component: () => import('../views/about.vue')
   }
 ]
 const router = new Router({

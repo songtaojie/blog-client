@@ -20,6 +20,10 @@
             <el-link :href="activity.link" :target="activity.target" v-else>{{activity.content}}</el-link>
           </el-timeline-item>
         </el-timeline>
+        <infinite-loading @infinite="infiniteHandler">
+          <span class="my-4" slot="no-more">没有更多了</span>
+          <span slot="no-results"></span>
+        </infinite-loading>
       </div>
     </div>
   </div>
@@ -29,32 +33,43 @@
 import HxHeader from '@/components/HxHeader.vue'
 import { timeLineApi } from '../../api'
 import { isEmpty } from '../../common'
+import InfiniteLoading from 'vue-infinite-loading'
 export default {
   name: 'timeline',
   data() {
     return {
       title: '海·星の博客-时间戳',
-      page: 0,
+      page: 1,
       activities: []
     }
   },
   components: {
-    HxHeader
+    HxHeader,
+    InfiniteLoading
   },
   methods: {
     isEmpty,
-    getTimeLines(page) {
+    infiniteHandler($state) {
       var that = this
-      timeLineApi.getTimeLines(page)
+      timeLineApi.getTimeLines(that.page)
         .then(res => {
-          if (res && res.succeeded) {
-            that.activities = res.data.items
+          if (res.data.items.length > 0) {
+            that.activities = that.activities.concat(res.data.items)
+            if (res.data.hasNextPage) {
+              $state.loaded()
+            } else {
+              if (that.page === 1) {
+                $state.loaded()
+              }
+              $state.complete()
+            }
+            that.page += 1
+          } else {
+            $state.complete()
           }
+
         })
     }
-  },
-  created: function () {
-    this.getTimeLines(0)
   }
 }
 </script>
@@ -66,21 +81,6 @@ export default {
   -webkit-box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
   box-shadow: 0px 0px 10px -2px rgba(158, 158, 158, 0.2);
 }
-// ::v-deep .el-timeline-item__timestamp.is-top {
-//   position: absolute;
-//   left: -117px;
-//   top: -3px;
-//   color: #333333;
-// }
-// ::v-deep .el-timeline-item__timestamp.is-bottom {
-//   position: absolute;
-//   left: -117px;
-//   top: -3px;
-//   color: #333333;
-// }
-// ::v-deep .el-timeline {
-//   padding-left: 150px;
-// }
 ::v-deep .el-timeline-item__node--large {
   width: 18px;
   height: 18px;
@@ -88,5 +88,14 @@ export default {
 ::v-deep .el-timeline-item__tail {
   border-color: #009688;
   left: 6px;
+}
+::v-deep .el-timeline-item__wrapper {
+  background: rgb(248, 248, 248);
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 14px;
+  margin-left: 28px;
+  width: 48%;
 }
 </style>

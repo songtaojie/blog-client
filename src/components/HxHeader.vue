@@ -16,9 +16,10 @@
         text-color="#fff"
       >
         <el-menu-item index="/">网站首页</el-menu-item>
+        <el-menu-item :route="{ path: '/articles', query: { t: '0' } }" index="/articles">文章专栏</el-menu-item>
         <el-menu-item index="/index">资源分享</el-menu-item>
         <el-menu-item index="/timeline">点点滴滴</el-menu-item>
-        <el-menu-item index="/index">关于本站</el-menu-item>
+        <el-menu-item index="/about">关于我</el-menu-item>
       </el-menu>
     </div>
   </header>
@@ -33,32 +34,10 @@ export default {
     }
   },
   data() {
-    var that = this
     return {
-      editRoute: {
-        name: 'edit',
-        params: {
-          useMdEdit: that.$store.getters.user.useMdEdit
-        }
-      },
-      logo: require('@/assets/images/logo.png'),
-      screenWidth: document.body.clientWidth // 屏幕宽度
-    }
-  },
-  methods: {
-  },
-  mounted() {
-    // const $col = this.$refs.collapse
-    const that = this
-    // const $col = this.$refs.collapse
-    const $dropdown = this.$refs.dropdown
-    window.onresize = function () {
-      that.screenWidth = document.body.clientWidth
-      that.colVisible = false
-      if ($dropdown && $dropdown.visible) $dropdown.visible = false
+      logo: require('@/assets/images/logo.png')
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>
+

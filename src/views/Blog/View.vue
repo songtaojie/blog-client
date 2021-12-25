@@ -1,7 +1,6 @@
 <template>
   <div v-wechat-title="this.title">
     <hx-header></hx-header>
-
     <div class="container-fluid hx-container pt-3">
       <el-breadcrumb class="hx-breadcrumb hx-bg-color" separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>

@@ -15,6 +15,10 @@ export const blogApi = {
   getArticles(page) {
     return request.get(`/api/articles/${page}`)
   },
+  // 分页列表
+  getTagArticles(tagId, page) {
+    return request.get(`/api/tag/articles?t=${tagId}&p=${page}`)
+  },
   getDetail(id) {
     return request.get(`/api/article/${id}`)
   }

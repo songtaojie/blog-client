@@ -55,32 +55,22 @@
 import { isEmpty } from '../../common'
 import { blogApi } from '../../api'
 import InfiniteLoading from 'vue-infinite-loading'
+
 export default {
   name: 'HxArticle',
   data() {
+    var tagId = this.$route.query.t
     return {
-      attachApi: process.env.VUE_APP_ATTACH_API,
-      avatarUrl: require('../../assets/images/avatar1_small.jpg'),
       blogList: [],
-      page: 1
+      page: 1,
+      tagId
     }
   },
   components: {
     InfiniteLoading
   },
-  created() {
-    // this.getArticles()
-  },
   methods: {
     isEmpty,
-    getArticles: function () {
-      var that = this
-      blogApi.getArticles(that.page)
-        .then(res => {
-          that.page += 1
-          that.blogList = that.blogList.concat(res.data.items)
-        })
-    },
     getTagStyle(tag) {
       return {
         'background-color': tag.bgColor,
@@ -90,20 +80,35 @@ export default {
     },
     infiniteHandler($state) {
       var that = this
-      blogApi.getArticles(that.page)
-        .then(res => {
-          if (res.data.items.length > 0) {
-            that.page += 1
-            that.blogList = that.blogList.concat(res.data.items)
-            if (res.data.hasNextPage) {
-              $state.loaded()
-            } else {
-              $state.complete()
-            }
-          } else {
-            $state.complete()
+      if (isEmpty(that.tagId)) {
+        blogApi.getArticles(that.page)
+          .then(res => {
+            that.requestSuccess(res, $state)
+          })
+      } else {
+        blogApi.getTagArticles(that.tagId, that.page)
+          .then(res => {
+            that.requestSuccess(res, $state)
+          })
+      }
+
+    },
+    requestSuccess(res, $state) {
+      var that = this
+      if (res.data.items.length > 0) {
+        that.blogList = that.blogList.concat(res.data.items)
+        if (res.data.hasNextPage) {
+          $state.loaded()
+        } else {
+          if (that.page === 1) {
+            $state.loaded()
           }
-        })
+          $state.complete()
+        }
+        that.page += 1
+      } else {
+        $state.complete()
+      }
     }
   }
 }
@@ -115,7 +120,7 @@ export default {
   overflow: hidden;
   padding: 0;
   border-radius: 6px;
-  /deep/img {
+  ::v-deep img {
     -moz-transition: ease-in-out 0.3s;
     -webkit-transition: ease-in-out 0.3s;
     -o-transition: ease-in-out 0.3s;
@@ -123,7 +128,7 @@ export default {
     transition: ease-in-out 0.3s;
   }
   &:hover {
-    /deep/img {
+    ::v-deep img {
       transition: All 0.7s ease;
       -webkit-transform: scale(1.1);
       -moz-transform: scale(1.1);
