@@ -1,7 +1,7 @@
 <template>
   <article class="d-flex mt-2 flex-column justify-content-start hx-article">
     <div :key="item.id" class="mb-2 hx-article-item d-flex hx-bg-color" v-for="item in blogList">
-      <a class="hx-article-cover my-auto d-none d-sm-block">
+      <a class="hx-article-cover my-auto d-none d-sm-block" v-if="!isEmpty(item.coverImgUrl)">
         <el-image :src="item.coverImgUrl" class="hx-fea-img"></el-image>
       </a>
       <div class="flex-fill hx-article-abstract">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <infinite-loading @infinite="infiniteHandler">
-      <span slot="no-more">没有更多了</span>
+      <span class="my-4" slot="no-more">没有更多了</span>
       <span slot="no-results">小主还没发布任何文章</span>
     </infinite-loading>
   </article>
@@ -95,7 +95,11 @@ export default {
           if (res.data.items.length > 0) {
             that.page += 1
             that.blogList = that.blogList.concat(res.data.items)
-            $state.loaded()
+            if (res.data.hasNextPage) {
+              $state.loaded()
+            } else {
+              $state.complete()
+            }
           } else {
             $state.complete()
           }
