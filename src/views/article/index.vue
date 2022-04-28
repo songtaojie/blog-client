@@ -36,8 +36,8 @@
 <script>
 import HxHeader from '@/components/HxHeader.vue'
 import HxNotice from '@/components/HxNotice.vue'
-import HxArticle from '../home/Article.vue'
-import HxTag from '../home/Tag.vue'
+import HxArticle from '../home/article.vue'
+import HxTag from '../home/tag.vue'
 import { homeApi } from '../../api'
 export default {
   data() {

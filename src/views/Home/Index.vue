@@ -72,9 +72,9 @@
 import HxHeader from '@/components/HxHeader.vue'
 import HxCarousel from '@/components/HxCarousel.vue'
 import HxNotice from '@/components/HxNotice.vue'
-import HxCard from './Card'
-import HxTag from './Tag.vue'
-import HxArticle from './Article'
+import HxCard from './card'
+import HxTag from './tag.vue'
+import HxArticle from './article'
 import { homeApi } from '../../api'
 export default {
   data() {

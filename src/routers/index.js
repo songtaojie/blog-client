@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '../views/home/Index.vue'
+import Index from '../views/home/index.vue'
 import Articles from '../views/article/index.vue'
 Vue.use(Router)
 const routes = [
@@ -22,7 +22,7 @@ const routes = [
   }, {
     name: 'view',
     path: '/article/:id',
-    component: () => import('../views/blog/View.vue')
+    component: () => import('../views/blog/view.vue')
   },
   {
     name: 'timeline',

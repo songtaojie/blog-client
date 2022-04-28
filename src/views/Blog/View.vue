@@ -41,7 +41,7 @@
 
 <script>
 import HxHeader from '@/components/HxHeader.vue'
-import MdView from './MdView'
+import MdView from './mdview'
 import { dateFormat, isEmpty } from '../../common/'
 import { blogApi } from '../../api'
 export default {
